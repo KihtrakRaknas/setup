@@ -130,18 +130,16 @@
             if(url=="info"){
               console.log("Going to: "+ downloads[down][url]);
               window.open(downloads[down][url]);//NOT working???
+		openInNewTab(downloads[down][url]);
             }
           }
       }
     }
-
-    function newTab(url)
-    {
-      var tab=window.open("");
-      tab.document.write("<!DOCTYPE html><html>"+document.getElementsByTagName("html")[0].innerHTML+"</html>");
-      tab.document.close();
-      window.location.href=url;
-    }
+		
+function openInNewTab(url) {
+  var win = window.open(url, '_blank');
+  win.focus();
+}
   	</script>
   </body>
 </html>
