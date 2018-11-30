@@ -48,6 +48,8 @@
     var downloads = {
       Java:{
         winUrl: "http://javadl.oracle.com/webapps/download/AutoDL?BundleId=227521_e758a0de34e24606bca991d704f6dcbf",
+        //macUrl: "http://javadl.oracle.com/webapps/download/AutoDL?BundleId=227521_e758a0de34e24606bca991d704f6dcbf",
+        //LinixUrl: "http://javadl.oracle.com/webapps/download/AutoDL?BundleId=227521_e758a0de34e24606bca991d704f6dcbf",
         info: "https://java.com/inc/BrowserRedirect1.jsp?locale=en"
       },
       Git:{
@@ -88,13 +90,13 @@
           if(url=="winUrl"){
             downloadBtn.classList.add("btn-outline-success");
             downloadBtn.classList.add("active");
-            downloadBtn.innerText="Download";
             downloadBtnBtn.checked = true;
-            downloadBtnBtn.id = down+"_download"
+            downloadBtn.innerText="Download";
+            downloadBtn.id = down+"_download"
           }else if(url=="info"){
             downloadBtn.classList.add("btn-outline-info");
             downloadBtn.innerText="Open Download Page";
-            downloadBtnBtn.id = down+"_info"
+            downloadBtn.id = down+"_info"
           }
           downloadBtn.appendChild(downloadBtnBtn);
           downloadLink.appendChild(downloadBtn);
@@ -120,31 +122,31 @@
     function start(){
       for(var down in downloads){
         var btn = document.getElementById(down+"_download");
-        if(btn.checked==true)
+        if(btn.classList.contains("active"))
           for(var url in downloads[down]){
             if(url=="winUrl"){
               console.log("Going to: "+ downloads[down][url]);
-		openInNewTab(downloads[down][url]);
+		            openInNewTab(downloads[down][url]);
             }
           }
       }
       for(var down in downloads){
         var btn = document.getElementById(down+"_info");
-        if(btn.checked==true)
+        if(btn.classList.contains("active"))
           for(var url in downloads[down]){
             if(url=="info"){
               console.log("Going to: "+ downloads[down][url]);
-              window.open(downloads[down][url]);//NOT working???
-		openInNewTab(downloads[down][url]);
+              //window.open(downloads[down][url]);//NOT working???
+          		openInNewTab(downloads[down][url]);
             }
           }
       }
     }
-		
-function openInNewTab(url) {
-  var win = window.open(url, '_blank');
-  win.focus();
-}
+
+    function openInNewTab(url) {
+      var win = window.open(url, '_blank');
+      win.focus();
+    }
   	</script>
   </body>
 </html>
