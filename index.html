@@ -18,14 +18,14 @@
             <div class="input-group-prepend">
               <div class="input-group-text" id="btnGroupAddon">OS</div>
             </div>
-      		  <label class="btn btn-outline-success active">
-      		    <input type="radio" name="Download" id="goToDownload" autocomplete="off" checked> Windows
+      		  <label class="btn btn-outline-success active" id="windows">
+      		    <input type="radio" name="Download" autocomplete="off" checked> Windows
       		  </label>
-      		  <label class="btn btn-outline-success">
-      		    <input type="radio" name="To to download page" id="goToSite" autocomplete="off"> Mac OS X
+      		  <label class="btn btn-outline-success" id="mac">
+      		    <input type="radio" name="To to download page" autocomplete="off"> Mac OS X
       		  </label>
-      		  <label class="btn btn-outline-success">
-      		  	<input type="radio" name="null" id="null" autocomplete="off"> Linux/Unix
+      		  <label class="btn btn-outline-success" id="Linux/Unix">
+      		  	<input type="radio" name="null" autocomplete="off"> Linux/Unix
       		  </label>
     		  </div>
           <br>
@@ -45,21 +45,46 @@
 		$(function () {
 		  $('[data-toggle="tooltip"]').tooltip()
 		})
+
+    if (navigator.appVersion.indexOf("Win")!=-1){
+      document.getElementById("windows").classList.add("Active");
+      document.getElementById("mac").classList.remove("Active");
+      document.getElementById("Linux/Unix").classList.remove("Active");
+    }else if (navigator.appVersion.indexOf("Mac")!=-1){
+      document.getElementById("windows").classList.remove("Active");
+      document.getElementById("mac").classList.add("Active");
+      document.getElementById("Linux/Unix").classList.remove("Active");
+    }else if (navigator.appVersion.indexOf("X11")!=-1){
+      document.getElementById("windows").classList.remove("Active");
+      document.getElementById("mac").classList.remove("Active");
+      document.getElementById("Linux/Unix").classList.add("Active");
+    }else if (navigator.appVersion.indexOf("Linux")!=-1){
+      document.getElementById("windows").classList.remove("Active");
+      document.getElementById("mac").classList.remove("Active");
+      document.getElementById("Linux/Unix").classList.add("Active");
+    }else{
+      document.getElementById("windows").classList.remove("Active");
+      document.getElementById("mac").classList.remove("Active");
+      document.getElementById("Linux/Unix").classList.remove("Active");
+    }
+
+    document.write('Your OS: '+OSName);
+
+
     var downloads = {
       Java:{
         winUrl: "http://javadl.oracle.com/webapps/download/AutoDL?BundleId=227521_e758a0de34e24606bca991d704f6dcbf",
-        //macUrl: "http://javadl.oracle.com/webapps/download/AutoDL?BundleId=227521_e758a0de34e24606bca991d704f6dcbf",
-        //LinixUrl: "http://javadl.oracle.com/webapps/download/AutoDL?BundleId=227521_e758a0de34e24606bca991d704f6dcbf",
+        macUrl: "https://javadl.oracle.com/webapps/download/AutoDL?BundleId=235718_2787e4a523244c269598db4e85c51e0c",
         info: "https://java.com/inc/BrowserRedirect1.jsp?locale=en"
       },
       Git:{
         winUrl: "https://github.com/git-for-windows/git/releases/download/v2.19.2.windows.1/Git-2.19.2-64-bit.exe",
         info: "https://git-scm.com/downloads"
       },
-	Atom:{
-		winUrl:"https://atom.io/download/windows_x64",
-		info:"https://atom.io/",
-	}
+    	Atom:{
+    		winUrl:"https://atom.io/download/windows_x64",
+    		info:"https://atom.io/",
+    	}
     }
     for(var down in downloads){
       document.getElementById("links").appendChild(document.createElement("BR"))
