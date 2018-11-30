@@ -120,6 +120,7 @@
           for(var url in downloads[down]){
             if(url=="winUrl"){
               console.log("Going to: "+ downloads[down][url]);
+		openInNewTab(downloads[down][url]);
             }
           }
       }
