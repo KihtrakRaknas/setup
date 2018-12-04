@@ -46,22 +46,28 @@
 		  $('[data-toggle="tooltip"]').tooltip()
 		})
 
+var OSName= “null”;
+
     if (navigator.appVersion.indexOf("Win")!=-1){
       document.getElementById("windows").classList.add("Active");
       document.getElementById("mac").classList.remove("Active");
       document.getElementById("Linux/Unix").classList.remove("Active");
+OSName= “windows”
     }else if (navigator.appVersion.indexOf("Mac")!=-1){
       document.getElementById("windows").classList.remove("Active");
       document.getElementById("mac").classList.add("Active");
       document.getElementById("Linux/Unix").classList.remove("Active");
+OSName= “mac”
     }else if (navigator.appVersion.indexOf("X11")!=-1){
       document.getElementById("windows").classList.remove("Active");
       document.getElementById("mac").classList.remove("Active");
       document.getElementById("Linux/Unix").classList.add("Active");
+OSName= “X11”
     }else if (navigator.appVersion.indexOf("Linux")!=-1){
       document.getElementById("windows").classList.remove("Active");
       document.getElementById("mac").classList.remove("Active");
       document.getElementById("Linux/Unix").classList.add("Active");
+OSName= “Linux”
     }else{
       document.getElementById("windows").classList.remove("Active");
       document.getElementById("mac").classList.remove("Active");
