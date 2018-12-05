@@ -1,3 +1,0 @@
-java mousefreeze
-
-pause

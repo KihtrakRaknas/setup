@@ -1,3 +1,0 @@
-java AWESOMEGAME
-
-pause
