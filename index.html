@@ -52,12 +52,12 @@ var OSName= "null";
       document.getElementById("windows").classList.add("Active");
       document.getElementById("mac").classList.remove("Active");
       document.getElementById("Linux/Unix").classList.remove("Active");
-OSName= "windows "
+OSName= "winUrl "
     }else if (navigator.appVersion.indexOf("Mac")!=-1){
       document.getElementById("windows").classList.remove("Active");
       document.getElementById("mac").classList.add("Active");
       document.getElementById("Linux/Unix").classList.remove("Active");
-OSName= "mac "
+OSName= "macUrl "
     }else if (navigator.appVersion.indexOf("X11")!=-1){
       document.getElementById("windows").classList.remove("Active");
       document.getElementById("mac").classList.remove("Active");
@@ -113,12 +113,13 @@ OSName= "Linux "
         downloadLink.appendChild(downloadName);
 
         for(var url in downloads[down]){
+          var Append = true;
           var downloadBtn = document.createElement("LABEL");
           downloadBtn.classList.add("btn");
           var downloadBtnBtn = document.createElement("INPUT");
           downloadBtnBtn.setAttribute("type","radio");
           downloadBtnBtn.setAttribute("autocomplete","off");
-          if(url=="winUrl"){
+          if(url==OSName){
             downloadBtn.classList.add("btn-outline-success");
             downloadBtn.classList.add("active");
             downloadBtnBtn.checked = true;
@@ -128,9 +129,13 @@ OSName= "Linux "
             downloadBtn.classList.add("btn-outline-info");
             downloadBtn.innerText="Open Download Page";
             downloadBtn.id = down+"_info"
+          }else{
+            Append = false;
           }
-          downloadBtn.appendChild(downloadBtnBtn);
-          downloadLink.appendChild(downloadBtn);
+          if(Append){
+            downloadBtn.appendChild(downloadBtnBtn);
+            downloadLink.appendChild(downloadBtn);
+          }
         }
         var downloadBtn = document.createElement("label");
         downloadBtn.classList.add("btn");
@@ -155,7 +160,7 @@ OSName= "Linux "
         var btn = document.getElementById(down+"_download");
         if(btn.classList.contains("active"))
           for(var url in downloads[down]){
-            if(url=="winUrl"){
+            if(url==OSName){
               console.log("Going to: "+ downloads[down][url]);
 		            openInNewTab(downloads[down][url]);
             }
