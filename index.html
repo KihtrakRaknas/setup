@@ -52,22 +52,22 @@ var OSName= "null";
       document.getElementById("windows").classList.add("Active");
       document.getElementById("mac").classList.remove("Active");
       document.getElementById("Linux/Unix").classList.remove("Active");
-OSName= "winUrl "
+OSName= "winUrl"
     }else if (navigator.appVersion.indexOf("Mac")!=-1){
       document.getElementById("windows").classList.remove("Active");
       document.getElementById("mac").classList.add("Active");
       document.getElementById("Linux/Unix").classList.remove("Active");
-OSName= "macUrl "
+OSName= "macUrl"
     }else if (navigator.appVersion.indexOf("X11")!=-1){
       document.getElementById("windows").classList.remove("Active");
       document.getElementById("mac").classList.remove("Active");
       document.getElementById("Linux/Unix").classList.add("Active");
-OSName= "X11 "
+OSName= "X11"
     }else if (navigator.appVersion.indexOf("Linux")!=-1){
       document.getElementById("windows").classList.remove("Active");
       document.getElementById("mac").classList.remove("Active");
       document.getElementById("Linux/Unix").classList.add("Active");
-OSName= "Linux "
+OSName= "Linux"
     }else{
       document.getElementById("windows").classList.remove("Active");
       document.getElementById("mac").classList.remove("Active");
@@ -91,6 +91,14 @@ OSName= "Linux "
     		winUrl:"https://atom.io/download/windows_x64",
     		info:"https://atom.io/",
     	},
+      "Android Studio":{
+        winUrl:"https://kihtark.com/setup/android-studio-ide-181.5056338-windows.exe",
+        info: "https://developer.android.com/studio/",
+      },
+      "Google Chrome":{
+        winUrl:"https://kihtark.com/setup/ChromeSetup.exe",
+        info: "https://www.google.com/chrome/",
+      }
     }
     for(var down in downloads){
       document.getElementById("links").appendChild(document.createElement("BR"))
