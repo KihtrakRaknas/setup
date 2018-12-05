@@ -13,20 +13,23 @@
   <body>
     <div class="container-fluid">
     	<h1 class="text-center display-4"style="max-width:100%">Downloads!</h1>
+      <div id="os" onclick="setInterval(update,300);">
+      <div style="width:100%;display:flex;justify-content: center;" class="btn-group btn-group-toggle" data-toggle="buttons">
+        <div class="input-group-prepend">
+          <div class="input-group-text" id="btnGroupAddon">OS</div>
+        </div>
+        <label class="btn btn-outline-success active" id="windows">
+          <input type="radio" name="Download" autocomplete="off" checked> Windows
+        </label>
+        <label class="btn btn-outline-success" id="mac">
+          <input type="radio" name="To to download page" autocomplete="off"> Mac OS X
+        </label>
+        <label class="btn btn-outline-success" id="Linux/Unix">
+          <input type="radio" name="null" autocomplete="off"> Linux/Unix
+        </label>
+      </div>
         <div id="links">
-        	<div style="width:100%;display:flex;justify-content: center;" class="btn-group btn-group-toggle" data-toggle="buttons">
-            <div class="input-group-prepend">
-              <div class="input-group-text" id="btnGroupAddon">OS</div>
-            </div>
-      		  <label class="btn btn-outline-success active" id="windows">
-      		    <input type="radio" name="Download" autocomplete="off" checked> Windows
-      		  </label>
-      		  <label class="btn btn-outline-success" id="mac">
-      		    <input type="radio" name="To to download page" autocomplete="off"> Mac OS X
-      		  </label>
-      		  <label class="btn btn-outline-success" id="Linux/Unix">
-      		  	<input type="radio" name="null" autocomplete="off"> Linux/Unix
-      		  </label>
+
     		  </div>
           <br>
           <br>
@@ -49,32 +52,31 @@
 var OSName= "null";
 
     if (navigator.appVersion.indexOf("Win")!=-1){
-      document.getElementById("windows").classList.add("Active");
-      document.getElementById("mac").classList.remove("Active");
-      document.getElementById("Linux/Unix").classList.remove("Active");
-OSName= "winUrl"
+      document.getElementById("windows").classList.add("active");
+      document.getElementById("mac").classList.remove("active");
+      document.getElementById("Linux/Unix").classList.remove("active");
     }else if (navigator.appVersion.indexOf("Mac")!=-1){
-      document.getElementById("windows").classList.remove("Active");
-      document.getElementById("mac").classList.add("Active");
-      document.getElementById("Linux/Unix").classList.remove("Active");
+      document.getElementById("windows").classList.remove("active");
+      document.getElementById("mac").classList.add("active");
+      document.getElementById("Linux/Unix").classList.remove("active");
 OSName= "macUrl"
     }else if (navigator.appVersion.indexOf("X11")!=-1){
-      document.getElementById("windows").classList.remove("Active");
-      document.getElementById("mac").classList.remove("Active");
-      document.getElementById("Linux/Unix").classList.add("Active");
+      document.getElementById("windows").classList.remove("active");
+      document.getElementById("mac").classList.remove("active");
+      document.getElementById("Linux/Unix").classList.add("active");
 OSName= "X11"
     }else if (navigator.appVersion.indexOf("Linux")!=-1){
-      document.getElementById("windows").classList.remove("Active");
-      document.getElementById("mac").classList.remove("Active");
-      document.getElementById("Linux/Unix").classList.add("Active");
+      document.getElementById("windows").classList.remove("active");
+      document.getElementById("mac").classList.remove("active");
+      document.getElementById("Linux/Unix").classList.add("active");
 OSName= "Linux"
     }else{
-      document.getElementById("windows").classList.remove("Active");
-      document.getElementById("mac").classList.remove("Active");
-      document.getElementById("Linux/Unix").classList.remove("Active");
+      document.getElementById("windows").classList.remove("active");
+      document.getElementById("mac").classList.remove("active");
+      document.getElementById("Linux/Unix").classList.remove("active");
     }
 
-    document.write('Your OS: '+OSName);
+
 
 
     var downloads = {
@@ -113,6 +115,24 @@ OSName= "Linux"
         info:"https://drive.google.com/drive/folders/0B38mbZ0OsaNTeWQ1NzJZMU56bnM",
       }
     }
+update()
+
+function update(){
+if(      document.getElementById("windows").classList.contains("active")   ){
+  OSName= "winUrl"
+}else if(  document.getElementById("mac").classList.contains("active")    ){
+  OSName= "macUrl"
+}else if(  document.getElementById("Linux/Unix").classList.contains("active")    ){
+      OSName= "null"
+        }
+
+
+      //document.write('Your OS: '+OSName);
+
+  while (document.getElementById("links").firstChild) {
+      document.getElementById("links").removeChild(document.getElementById("links").firstChild);
+  }
+
     for(var down in downloads){
       document.getElementById("links").appendChild(document.createElement("BR"))
       var downloadLink = document.createElement("DIV");
@@ -170,6 +190,9 @@ OSName= "Linux"
 
       document.getElementById("links").appendChild(downloadLink);
     }
+
+}
+
     window.onkeydown = function(e) {
        var key = e.keyCode ? e.keyCode : e.which;
        if (key == 68) {
