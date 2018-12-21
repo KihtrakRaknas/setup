@@ -138,6 +138,9 @@ OSName= "Linux"
         info: "https://www.ubuntu.com/download/desktop",
       }
     }
+
+    var preSelect = "down";
+
 update()
 
 function update(){
@@ -185,14 +188,22 @@ if(      document.getElementById("windows").classList.contains("active")   ){
           downloadBtnBtn.setAttribute("autocomplete","off");
           if(url==OSName){
             downloadBtn.classList.add("btn-outline-success");
-            downloadBtn.classList.add("active");
-            downloadBtnBtn.checked = true;
+            console.log(preSelect);
+            if(preSelect=="down"){
+              downloadBtn.classList.add("active");
+              downloadBtnBtn.checked = true;
+              console.log("yesy");
+            }
             downloadBtn.innerText="Download";
             downloadBtn.id = down+"_download"
           }else if(url=="info"){
             downloadBtn.classList.add("btn-outline-info");
             downloadBtn.innerText="Open Download Page";
             downloadBtn.id = down+"_info"
+            if(preSelect=="info"){
+              downloadBtn.classList.add("active");
+              downloadBtnBtn.checked = true;
+            }
           }else{
             Append = false;
           }
@@ -208,6 +219,12 @@ if(      document.getElementById("windows").classList.contains("active")   ){
         var downloadBtnBtn = document.createElement("INPUT");
         downloadBtnBtn.setAttribute("type","radio");
         downloadBtnBtn.setAttribute("autocomplete","off");
+
+        if(preSelect=="null"){
+          downloadBtn.classList.add("active");
+          downloadBtnBtn.checked = true;
+        }
+
         downloadBtn.appendChild(downloadBtnBtn);
         downloadLink.appendChild(downloadBtn);
 
@@ -221,16 +238,8 @@ if(      document.getElementById("windows").classList.contains("active")   ){
        if (key == 68) {
            start();
        }else if (key == 78) {
-           for(var node of document.getElementById("links").childNodes){
-             if(node.nodeName=="DIV"){
-               for(var node2 of node.childNodes){
-                 if(node2.id!="")
-                  node2.classList.remove("active");
-                else
-                  node2.classList.add("active");
-               }
-             }
-           }
+         preSelect = "null";
+         update();
        }
     }
     function start(){
