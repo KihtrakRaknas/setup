@@ -249,7 +249,7 @@ if(      document.getElementById("windows").classList.contains("active")   ){
     function start(){
       for(var down in downloads){
         var btn = document.getElementById(down+"_download");
-        if(btn.classList.contains("active"))
+        if(btn!=null&&btn.classList.contains("active"))
           for(var url in downloads[down]){
             if(url==OSName){
               console.log("Going to: "+ downloads[down][url]);
@@ -259,7 +259,7 @@ if(      document.getElementById("windows").classList.contains("active")   ){
       }
       for(var down in downloads){
         var btn = document.getElementById(down+"_info");
-        if(btn.classList.contains("active"))
+        if(btn!=null&&btn.classList.contains("active"))
           for(var url in downloads[down]){
             if(url=="info"){
               console.log("Going to: "+ downloads[down][url]);
