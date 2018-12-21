@@ -7,7 +7,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
     <title>Quick Comp. Set Up</title>
   </head>
   <body>
@@ -220,6 +220,17 @@ if(      document.getElementById("windows").classList.contains("active")   ){
        var key = e.keyCode ? e.keyCode : e.which;
        if (key == 68) {
            start();
+       }else if (key == 78) {
+           for(var node of document.getElementById("links").childNodes){
+             if(node.nodeName=="DIV"){
+               for(var node2 of node.childNodes){
+                 if(node2.id!="")
+                  node2.classList.remove("active");
+                else
+                  node2.classList.add("active");
+               }
+             }
+           }
        }
     }
     function start(){
